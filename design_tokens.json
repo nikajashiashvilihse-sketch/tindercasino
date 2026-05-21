@@ -1,0 +1,84 @@
+{
+  "themeName": "CasinoSwipe Noir & Gold Neon Vibe",
+  "version": "1.0.0",
+  "colors": {
+    "background": {
+      "primary": "#090a0f",
+      "secondary": "#121420",
+      "tertiary": "#1a1d30"
+    },
+    "brand": {
+      "gold": "#ffd700",
+      "goldHover": "#e6c200",
+      "coral": "#ff4757",
+      "coralHover": "#ff2a3b",
+      "violet": "#8a2be2"
+    },
+    "semantic": {
+      "matchLike": "#00c48c",
+      "passSkip": "#ff4757",
+      "superLike": "#ffd700",
+      "geoAvailable": "#00c48c",
+      "geoBlocked": "#ff4757"
+    },
+    "text": {
+      "primary": "#ffffff",
+      "secondary": "#9aa0b9",
+      "tertiary": "#5d637c"
+    },
+    "glass": {
+      "background": "rgba(26, 29, 48, 0.65)",
+      "border": "rgba(255, 255, 255, 0.08)",
+      "shadow": "rgba(0, 0, 0, 0.4)"
+    }
+  },
+  "typography": {
+    "fonts": {
+      "display": "'Outfit', -apple-system, BlinkMacSystemFont, sans-serif",
+      "body": "'Inter', -apple-system, BlinkMacSystemFont, sans-serif"
+    },
+    "fontSizes": {
+      "xxs": "0.65rem",
+      "xs": "0.75rem",
+      "sm": "0.85rem",
+      "md": "0.95rem",
+      "lg": "1.1rem",
+      "xl": "1.3rem",
+      "xxl": "1.6rem",
+      "huge": "2.2rem"
+    },
+    "fontWeights": {
+      "light": 300,
+      "regular": 400,
+      "medium": 500,
+      "semibold": 600,
+      "bold": 700,
+      "black": 900
+    }
+  },
+  "spacing": {
+    "xxs": "4px",
+    "xs": "8px",
+    "sm": "12px",
+    "md": "16px",
+    "lg": "24px",
+    "xl": "32px",
+    "xxl": "48px"
+  },
+  "borders": {
+    "radius": {
+      "xs": "6px",
+      "sm": "10px",
+      "md": "16px",
+      "lg": "24px",
+      "round": "9999px"
+    }
+  },
+  "motion": {
+    "transitions": {
+      "fast": "0.15s cubic-bezier(0.4, 0, 0.2, 1)",
+      "normal": "0.3s cubic-bezier(0.25, 0.8, 0.25, 1)",
+      "spring": "0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275)"
+    }
+  }
+}

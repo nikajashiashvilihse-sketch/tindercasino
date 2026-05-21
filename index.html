@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>CasinoSwipe — Tinder-Style iGaming Discovery Portal</title>
+  <meta name="description" content="Swipe right to save online casinos, left to skip. Match up, compare side-by-side, and explore bonuses safely.">
+  
+  <!-- CSS Stylesheets -->
+  <link rel="stylesheet" href="css/design-system.css">
+  <link rel="stylesheet" href="css/card-stack.css">
+  <link rel="stylesheet" href="css/components.css">
+  
+  <!-- Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+  <!-- Core App Viewport Mockup Container -->
+  <div class="app-container">
+
+    <!-- Onboarding Setup Flow Wizard Overlay -->
+    <div id="onboarding-overlay" class="onboarding-overlay">
+      <div class="onboarding-header">
+        <i class="fas fa-cubes-stacked"></i>
+        <h1>Welcome to <span>CasinoSwipe</span></h1>
+        <p>Your ultimate matchmaking game for online casinos.</p>
+      </div>
+
+      <!-- Step 1: Compliance Age Verification Gate -->
+      <div id="step-1" class="onboarding-step active">
+        <div class="onboarding-card glass-panel" style="padding:var(--space-lg); text-align:center;">
+          <h2 style="font-family:var(--font-display); font-weight:800; font-size:1.3rem; color:var(--color-coral); margin-bottom:var(--space-xs);"><i class="fas fa-user-shield"></i> Safety & Regulatory Age Check</h2>
+          <p style="font-size:0.85rem; margin-bottom:var(--space-lg); color:var(--text-secondary); line-height:1.4;">This application contains real-time promotions, deposit ratings, and options for online slot reviews. You MUST confirm you are above legal gambling age.</p>
+          <div class="age-gate-buttons">
+            <button class="btn-primary" id="btn-age-verify" style="width:100%; justify-content:center;">Yes, I am 18 or older</button>
+            <button class="btn-secondary" id="btn-age-reject" style="width:100%; justify-content:center;">No, I am under 18</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Step 2: Location Auto-IP detection -->
+      <div id="step-2" class="onboarding-step">
+        <div class="onboarding-card glass-panel" style="padding:var(--space-lg); text-align:center;">
+          <h2 style="font-family:var(--font-display); font-weight:800; font-size:1.25rem; color:var(--color-gold); margin-bottom:var(--space-xs);"><i class="fas fa-location-crosshairs"></i> Geo-Market Targeting</h2>
+          <p style="font-size:0.85rem; margin-bottom:var(--space-md); color:var(--text-secondary); line-height:1.4;">To ensure we show licenses matching your home jurisdiction, we simulated a geo-lookup.</p>
+          <div class="toggle-row" style="margin-bottom:var(--space-md); text-align:left;">
+            <div class="toggle-details">
+              <h4>Auto Detected Market:</h4>
+              <p style="color:var(--color-green); font-weight:700;"><i class="fas fa-check-circle"></i> Germany (MGA & Curacao Licensed Deck)</p>
+            </div>
+          </div>
+          <button class="btn-primary btn-next-step" data-next="3" style="width:100%; justify-content:center;">Confirm & Proceed</button>
+        </div>
+      </div>
+
+      <!-- Step 3: Game & Payment Preferences Setup -->
+      <div id="step-3" class="onboarding-step">
+        <div class="onboarding-card" style="gap:var(--space-md);">
+          <div class="form-group">
+            <label class="form-label">🎰 What games do you play?</label>
+            <div class="preference-grid">
+              <div class="selectable-box" data-type="game" data-val="slots">
+                <i class="fas fa-circle-dollar-to-slot"></i>
+                <span>Slots</span>
+              </div>
+              <div class="selectable-box" data-type="game" data-val="live">
+                <i class="fas fa-dice"></i>
+                <span>Live Casino</span>
+              </div>
+              <div class="selectable-box" data-type="game" data-val="sports">
+                <i class="fas fa-volleyball"></i>
+                <span>Sportsbook</span>
+              </div>
+              <div class="selectable-box" data-type="game" data-val="crash">
+                <i class="fas fa-rocket"></i>
+                <span>Crash / Instant</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group" style="margin-top:var(--space-xs);">
+            <label class="form-label">💳 Payment Options Preference</label>
+            <div class="preference-grid" style="grid-template-columns: repeat(3, 1fr); gap:6px;">
+              <div class="selectable-box" style="padding: var(--space-xs);" data-type="payment" data-val="visa">
+                <span>VISA</span>
+              </div>
+              <div class="selectable-box" style="padding: var(--space-xs);" data-type="payment" data-val="paypal">
+                <span>PayPal</span>
+              </div>
+              <div class="selectable-box" style="padding: var(--space-xs);" data-type="payment" data-val="bitcoin">
+                <span>Crypto</span>
+              </div>
+            </div>
+          </div>
+          <button class="btn-primary btn-next-step" data-next="4" style="justify-content:center; margin-top:8px;">Next Step</button>
+        </div>
+      </div>
+
+      <!-- Step 4: Budget Limits & Complete -->
+      <div id="step-4" class="onboarding-step">
+        <div class="onboarding-card" style="gap:var(--space-lg);">
+          <div class="form-group slider-container">
+            <div class="slider-info">
+              <span class="form-label">Minimum Welcome Bonus</span>
+              <span id="val-ob-bonus">€200+</span>
+            </div>
+            <input type="range" class="slider-range" id="ob-slider-bonus" min="0" max="1000" step="100" value="200" oninput="document.getElementById('val-ob-bonus').innerText = '€' + this.value + '+'">
+          </div>
+
+          <div class="form-group slider-container">
+            <div class="slider-info">
+              <span class="form-label">Maximum Min Deposit Limit</span>
+              <span id="val-ob-deposit">€20</span>
+            </div>
+            <input type="range" class="slider-range" id="ob-slider-deposit" min="5" max="50" step="5" value="20" oninput="document.getElementById('val-ob-deposit').innerText = '€' + this.value">
+          </div>
+
+          <!-- Regulatory compliance safety checkers -->
+          <div class="toggle-row">
+            <div class="toggle-details">
+              <h4>Regulatory Protection</h4>
+              <p>Show licensed casinos (MGA/UKGC/Curaçao) only</p>
+            </div>
+            <label class="switch">
+              <input type="checkbox" id="ob-select-license" value="any" checked>
+              <span class="slider-toggle"></span>
+            </label>
+          </div>
+
+          <div class="toggle-row" style="display:none;">
+            <input type="checkbox" id="ob-toggle-kyc">
+            <input type="checkbox" id="ob-toggle-rg" checked>
+          </div>
+
+          <button class="btn-primary" id="btn-onboarding-complete" style="justify-content:center; padding: 14px 20px;">Match Me! Unlock Cards</button>
+        </div>
+      </div>
+
+      <div class="onboarding-footer">
+        <div class="step-indicator">
+          <div id="dot-1" class="indicator-dot active"></div>
+          <div id="dot-2" class="indicator-dot"></div>
+          <div id="dot-3" class="indicator-dot"></div>
+          <div id="dot-4" class="indicator-dot"></div>
+        </div>
+        <span style="font-size:0.75rem; color:var(--text-tertiary);">CasinoSwipe Setup</span>
+      </div>
+    </div>
+
+
+    <!-- Active App Header (Filters access) -->
+    <header class="app-header">
+      <div class="logo-container">
+        <i class="fas fa-fire-flame-simple"></i>
+        <span class="logo-title">CasinoSwipe</span>
+      </div>
+      <div class="header-action" id="btn-open-filter">
+        <i class="fas fa-sliders"></i>
+      </div>
+    </header>
+
+
+    <!-- ==========================================================================
+         Tab Panel 1: Discover / Swipe Deck Mode
+         ========================================================================== -->
+    <div id="panel-discover" class="view-panel active" style="overflow:hidden; padding: 0;">
+      <div class="swipe-view">
+        
+        <!-- Tinder Card Stack viewport -->
+        <div class="card-stack" id="card-stack">
+          <!-- Dynamically populated card nodes -->
+        </div>
+
+        <!-- Empty deck layout -->
+        <div class="empty-deck" id="empty-deck" style="display:none;">
+          <i class="fas fa-crown"></i>
+          <h3>All Cleared Out!</h3>
+          <p>No casinos match your current swipe filter criteria. Reset filters or country targeting to discover more.</p>
+          <button class="btn-primary" id="btn-reset-swipe-deck" onclick="document.getElementById('btn-open-filter').click()">Adjust Swiping Preferences</button>
+        </div>
+
+        <!-- Swipe Action Control Buttons bar -->
+        <div class="swipe-controls">
+          <button class="control-btn btn-undo" id="btn-undo" title="Undo Swipe"><i class="fas fa-rotate-left"></i></button>
+          <button class="control-btn btn-nope" id="btn-nope" title="Pass Casino"><i class="fas fa-xmark"></i></button>
+          <button class="control-btn btn-super" id="btn-super" title="Super Like Casino"><i class="fas fa-star"></i></button>
+          <button class="control-btn btn-like" id="btn-like" title="Match Casino"><i class="fas fa-heart"></i></button>
+          <button class="control-btn btn-boost" id="btn-boost" title="Bonus Boost Rank"><i class="fas fa-bolt"></i></button>
+        </div>
+
+      </div>
+    </div>
+
+
+    <!-- ==========================================================================
+         Tab Panel 2: Saved Matches Grid List & Side-By-Side Compare triggers
+         ========================================================================== -->
+    <div id="panel-matches" class="view-panel">
+      <h2 class="panel-title">My Saved Matches</h2>
+      <p style="font-size:0.8rem; color:var(--text-secondary); margin-bottom: var(--space-md);">Matched online casinos. Check the comparative boxes below to analyze side-by-side.</p>
+      
+      <!-- List Grid for matches -->
+      <div class="matches-grid" id="matches-list">
+        <!-- Renders dynamically -->
+      </div>
+    </div>
+
+
+    <!-- ==========================================================================
+         Tab Panel 3: Interactive Search / Directory List view
+         ========================================================================== -->
+    <div id="panel-search" class="view-panel">
+      <h2 class="panel-title">Directory Directory</h2>
+      <div class="search-bar-container">
+        <div class="search-input-wrapper">
+          <i class="fas fa-magnifying-glass"></i>
+          <input type="text" class="search-input" id="search-input" placeholder="Search by name, bonus, slots...">
+        </div>
+      </div>
+      <div class="search-results" id="search-results-list">
+        <!-- Rendered items -->
+      </div>
+    </div>
+
+
+    <!-- ==========================================================================
+         Tab Panel 4: Profile, Safety limits, and Dev Specifications Portal Launcher
+         ========================================================================== -->
+    <div id="panel-profile" class="view-panel">
+      
+      <!-- Player Profile Card -->
+      <div class="profile-card">
+        <div class="profile-avatar">S</div>
+        <div class="profile-info">
+          <h3>Slots Swipe Pro</h3>
+          <p>Verified account under EU gaming laws</p>
+        </div>
+      </div>
+
+      <!-- General settings -->
+      <div class="settings-section">
+        <h3 class="settings-section-title">Manual Geo override</h3>
+        <select class="select-control" id="profile-country-select">
+          <option value="Germany">Germany (MGA Licenced)</option>
+          <option value="UK">United Kingdom (UKGC Licenced)</option>
+          <option value="Canada">Canada (Kahnawake/Curacao)</option>
+          <option value="New Zealand">New Zealand (International)</option>
+        </select>
+      </div>
+
+      <!-- Safety checklist & tools (Responsible Gambling compliance) -->
+      <div class="settings-section" style="background:var(--bg-secondary); border:1px solid var(--glass-border); padding:var(--space-md); border-radius:12px;">
+        <h3 class="settings-section-title" style="color:var(--color-coral);"><i class="fas fa-user-shield"></i> Responsible Gambling tools</h3>
+        <p style="font-size:0.75rem; color:var(--text-secondary); margin-bottom:var(--space-sm);">Keep your gaming habits transparent and under control with our safety self-exclusion gate.</p>
+        
+        <div class="toggle-row" style="background:var(--bg-tertiary); border:none; margin-bottom:8px;">
+          <div class="toggle-details">
+            <h4 style="font-size:0.85rem;">Continuous Self-Exclusion</h4>
+            <p>Restrict casino matching access instantly for 24h cool-off</p>
+          </div>
+          <label class="switch">
+            <input type="checkbox" id="self-exclusion-toggle">
+            <span class="slider-toggle"></span>
+          </label>
+        </div>
+      </div>
+
+      <!-- Developer Specification Portal Launcher button -->
+      <div class="btn-dev-portal" id="btn-open-dev">
+        <i class="fas fa-code"></i> Developer Specifications Portal
+      </div>
+
+      <!-- Compliance Disclaimer in footer -->
+      <div style="font-size:0.7rem; color:var(--text-tertiary); text-align:center; margin-top:var(--space-lg); line-height:1.4;">
+        CasinoSwipe is an independent directory. Swiping and matched registration redirects player to licensing casino sites. Always set deposit limits. Gamble responsibly.
+      </div>
+    </div>
+
+
+    <!-- ==========================================================================
+         Sliding Filter Drawer (Discover preferences drawer)
+         ========================================================================== -->
+    <div class="drawer-backdrop" id="drawer-backdrop"></div>
+    <div class="filter-drawer" id="filter-drawer">
+      <div class="drawer-header">
+        <h3>Match Preferences</h3>
+        <div class="drawer-close" id="btn-close-filter"><i class="fas fa-xmark"></i></div>
+      </div>
+      <div class="drawer-body">
+        
+        <div class="form-group slider-container">
+          <div class="slider-info">
+            <span class="form-label">Minimum Welcome Bonus Match</span>
+            <span id="val-filter-bonus">€0+</span>
+          </div>
+          <input type="range" class="slider-range" id="filter-slider-bonus" min="0" max="1500" step="100" value="0">
+        </div>
+
+        <div class="form-group slider-container">
+          <div class="slider-info">
+            <span class="form-label">Maximum Min Deposit Limit</span>
+            <span id="val-filter-deposit">€100</span>
+          </div>
+          <input type="range" class="slider-range" id="filter-slider-deposit" min="5" max="100" step="5" value="100">
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">🎰 License Authority Selection</label>
+          <select class="select-control" id="filter-select-license">
+            <option value="any">Any Regulatory License (Curaçao/MGA/UKGC)</option>
+            <option value="MGA">MGA Only (EU Certified)</option>
+            <option value="UKGC">UKGC Only (British Compliance)</option>
+            <option value="Curaçao">Curaçao Only (Crypto Friendly)</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">⚡ Minimum Withdrawal Speed</label>
+          <select class="select-control" id="filter-select-speed">
+            <option value="any">Any payout speed</option>
+            <option value="same-day">Same day / Under 24h</option>
+            <option value="under-1h">Under 1 hour guaranteed</option>
+            <option value="instant">Instant blockchain transfers</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">🕹 Filtering Game tags</label>
+          <div class="preference-grid">
+            <div class="selectable-box" data-type="game" data-val="slots">
+              <i class="fas fa-circle-dollar-to-slot"></i>
+              <span>Slots</span>
+            </div>
+            <div class="selectable-box" data-type="game" data-val="live">
+              <i class="fas fa-dice"></i>
+              <span>Live Dealers</span>
+            </div>
+            <div class="selectable-box" data-type="game" data-val="sports">
+              <i class="fas fa-volleyball"></i>
+              <span>Sportsbook</span>
+            </div>
+            <div class="selectable-box" data-type="game" data-val="poker">
+              <i class="fas fa-spade"></i>
+              <span>Poker Lobby</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Hidden structural elements for RG tools filters -->
+        <div style="display:none;">
+          <input type="checkbox" id="filter-toggle-kyc">
+          <input type="checkbox" id="filter-toggle-rg">
+        </div>
+
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:var(--space-md); margin-top:8px;">
+          <button class="btn-secondary" id="btn-reset-filters" style="justify-content:center;">Reset</button>
+          <button class="btn-primary" id="btn-apply-filters" style="justify-content:center;">Apply Matches</button>
+        </div>
+
+      </div>
+    </div>
+
+
+    <!-- ==========================================================================
+         Comparison Side-By-Side Overlay
+         ========================================================================== -->
+    <div class="compare-overlay" id="compare-overlay">
+      <div class="compare-header">
+        <h2>Side-by-Side Match-up</h2>
+        <div class="compare-close" id="btn-close-compare"><i class="fas fa-xmark"></i></div>
+      </div>
+      <p style="font-size:0.75rem; color:var(--text-secondary); margin-bottom:12px;">Reviewing features, wagering, and regulatory safety to see which is a better match for your gambling type.</p>
+      <div class="compare-table" id="compare-details-table">
+        <!-- Rendered compare elements dynamically -->
+      </div>
+    </div>
+
+
+    <!-- ==========================================================================
+         Developer Specifications Portal view Overlay
+         ========================================================================== -->
+    <div class="dev-portal-overlay" id="dev-portal-overlay">
+      <div class="compare-header">
+        <h2>Developer & System Specs Portal</h2>
+        <div class="compare-close" id="btn-close-dev"><i class="fas fa-xmark"></i></div>
+      </div>
+      
+      <!-- Specification Tab Headers -->
+      <div class="dev-tabs">
+        <button class="dev-tab-btn active" data-pane="pane-tokens">Design Tokens</button>
+        <button class="dev-tab-btn" data-pane="pane-math">Swipe Physics Math</button>
+        <button class="dev-tab-btn" data-pane="pane-data">Casino JSON Model</button>
+        <button class="dev-tab-btn" data-pane="pane-hooks">CPA Affiliate Hooks</button>
+      </div>
+
+      <!-- Specification code block panes -->
+      <div id="pane-tokens" class="dev-pane" style="display:block;">
+        <span class="form-label" style="display:block; margin-bottom:6px;">Custom variables (CSS custom properties / JSON style tokens):</span>
+        <pre class="code-block" id="code-design-tokens"></pre>
+      </div>
+
+      <div id="pane-math" class="dev-pane" style="display:none;">
+        <span class="form-label" style="display:block; margin-bottom:6px;">Draggable rotations, coordinates and touch swipe physics:</span>
+        <pre class="code-block" id="code-swipe-guide"></pre>
+      </div>
+
+      <div id="pane-data" class="dev-pane" style="display:none;">
+        <span class="form-label" style="display:block; margin-bottom:6px;">Casino profile JSON Schema:</span>
+        <pre class="code-block" id="code-data-model"></pre>
+      </div>
+
+      <div id="pane-hooks" class="dev-pane" style="display:none;">
+        <span class="form-label" style="display:block; margin-bottom:6px;">Affiliate redirects and click-tracking CPA webhook triggers:</span>
+        <pre class="code-block" id="code-affiliate-hooks"></pre>
+      </div>
+    </div>
+
+
+    <!-- ==========================================================================
+         Jackpot Celebration & Confetti screen (Super Like Trigger)
+         ========================================================================== -->
+    <div class="match-celebration" id="match-celebration">
+      <!-- Particle effects canvas -->
+      <canvas id="celebration-canvas"></canvas>
+
+      <div class="celebration-title">🎰 JACKPOT MATCH! 🎰</div>
+      <div class="celebration-subtitle">You Super Liked this Casino!</div>
+      
+      <div class="celebration-cards">
+        <div class="celebration-card-logo" style="transform: rotate(-10deg);"><i class="fas fa-fire-flame-simple" style="font-size:3rem; color:var(--color-gold);"></i></div>
+        <i class="fas fa-heart celebration-heart"></i>
+        <div class="celebration-card-logo" id="matched-casino-logo" style="transform: rotate(10deg);"></div>
+      </div>
+
+      <div class="celebration-actions">
+        <button class="btn-primary" id="btn-celebration-play" style="justify-content:center; padding: 14px 20px;"><i class="fas fa-circle-play"></i> Claim Welcome Bonus Now</button>
+        <button class="btn-secondary" id="btn-celebration-keep" style="justify-content:center; border-color:var(--text-tertiary);">Keep Swiping</button>
+      </div>
+    </div>
+
+
+    <!-- Dynamic Bottom Application Navigation bar -->
+    <nav class="tab-bar">
+      <div class="tab-item active" data-tab="discover">
+        <i class="fas fa-copy"></i>
+        <span>Discover</span>
+      </div>
+      <div class="tab-item" data-tab="matches">
+        <i class="fas fa-heart"></i>
+        <span>Matches</span>
+      </div>
+      <div class="tab-item" data-tab="search">
+        <i class="fas fa-magnifying-glass"></i>
+        <span>Search</span>
+      </div>
+      <div class="tab-item" data-tab="profile">
+        <i class="fas fa-user"></i>
+        <span>Profile</span>
+      </div>
+    </nav>
+
+  </div>
+
+  <!-- JavaScript Modules -->
+  <script src="js/casino-data.js"></script>
+  <script src="js/swipe-engine.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

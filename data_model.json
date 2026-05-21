@@ -1,0 +1,165 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "CasinoProfile",
+  "description": "Schema structure of an online casino profile card for swiping matching algorithms.",
+  "type": "object",
+  "required": [
+    "id",
+    "name",
+    "tagline",
+    "bgColor",
+    "license",
+    "livePlayers",
+    "rating",
+    "welcomeBonus",
+    "minDeposit",
+    "withdrawalSpeed",
+    "restrictedCountries",
+    "availableCountries",
+    "gameTypes",
+    "vibeTags",
+    "bio",
+    "bonusBreakdown",
+    "payments",
+    "fastestPayment",
+    "wageringRating",
+    "withdrawalLimitWeekly",
+    "kycRequirement",
+    "rgTools",
+    "affiliateLink"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique identifier slug of the casino."
+    },
+    "name": {
+      "type": "string",
+      "description": "Online casino public brand name."
+    },
+    "tagline": {
+      "type": "string",
+      "description": "A high-impact short marketing motto."
+    },
+    "bgColor": {
+      "type": "string",
+      "description": "CSS gradient background string for the hero layout."
+    },
+    "license": {
+      "type": "string",
+      "enum": ["MGA", "UKGC", "Curaçao", "Kahnawake"],
+      "description": "Authorized regulatory body licensing state."
+    },
+    "livePlayers": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Mock counts of active online players."
+    },
+    "rating": {
+      "type": "number",
+      "minimum": 1.0,
+      "maximum": 5.0,
+      "description": "Review score from 1.0 to 5.0."
+    },
+    "welcomeBonus": {
+      "type": "string",
+      "description": "Main billboard promo text."
+    },
+    "minDeposit": {
+      "type": "integer",
+      "minimum": 1,
+      "description": "Minimum deposit amount in EUR."
+    },
+    "withdrawalSpeed": {
+      "type": "string",
+      "description": "Player payout processing speed."
+    },
+    "restrictedCountries": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "availableCountries": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "gameTypes": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": ["slots", "live", "sports", "poker", "crash", "crypto"]
+      }
+    },
+    "vibeTags": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "bio": {
+      "type": "string",
+      "maxLength": 300
+    },
+    "bonusBreakdown": {
+      "type": "object",
+      "required": ["welcome", "freeSpins", "noDeposit", "weekly", "vip"],
+      "properties": {
+        "welcome": {
+          "type": "object",
+          "required": ["title", "amount", "wagering", "expiry"],
+          "properties": {
+            "title": { "type": "string" },
+            "amount": { "type": "string" },
+            "wagering": { "type": "string" },
+            "expiry": { "type": "string" },
+            "details": { "type": "string" }
+          }
+        },
+        "freeSpins": {
+          "type": "object",
+          "required": ["title", "count", "slot", "wagering", "expiry"]
+        },
+        "noDeposit": {
+          "type": "object",
+          "required": ["available", "amount"]
+        },
+        "weekly": {
+          "type": "object",
+          "required": ["title", "description"]
+        },
+        "vip": {
+          "type": "object",
+          "required": ["title", "description"]
+        }
+      }
+    },
+    "payments": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "fastestPayment": {
+      "type": "string"
+    },
+    "wageringRating": {
+      "type": "string",
+      "enum": ["low", "medium", "high"]
+    },
+    "withdrawalLimitWeekly": {
+      "type": "integer"
+    },
+    "kycRequirement": {
+      "type": "string",
+      "enum": ["no-kyc", "standard"]
+    },
+    "rgTools": {
+      "type": "object",
+      "required": ["depositLimits", "selfExclusion"],
+      "properties": {
+        "depositLimits": { "type": "boolean" },
+        "selfExclusion": { "type": "boolean" },
+        "coolOff": { "type": "boolean" }
+      }
+    },
+    "affiliateLink": {
+      "type": "string",
+      "format": "uri"
+    }
+  }
+}
